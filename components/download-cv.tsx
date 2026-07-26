@@ -24,7 +24,7 @@ export default function DownloadCvButton() {
             <a
               href="/cv.pdf"
               download
-              className="flex items-center justify-center p-1.5 rounded-lg text-neutral-700 dark:text-neutral-300"
+              className="flex items-center justify-center p-1.5 rounded-lg aspect-square text-neutral-700 dark:text-neutral-300"
             >
               <Download size={24} />
             </a>
