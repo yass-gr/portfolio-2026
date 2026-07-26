@@ -15,10 +15,11 @@ export default function Preloader() {
     const overlay = overlayRef.current;
     if (!heroTitleWrap || !heroWords.length || !overlay) return;
 
-    const isScrolled = window.scrollY > 0;
+    const isScrolled = window.scrollY > 0 || heroTitleWrap.getBoundingClientRect().top < -100;
+    const isMobile = window.innerWidth < 1024;
+    const skipEntrance = isScrolled || isMobile;
 
-    if (!isScrolled) {
-      const isMobile = window.innerWidth < 1024;
+    if (!skipEntrance) {
       const firstWord = heroWords[0];
       const secondWord = heroWords[1];
       const titleRect = heroTitleWrap.getBoundingClientRect();
@@ -26,41 +27,27 @@ export default function Preloader() {
 
       gsap.set(heroTitleWrap, { position: "relative", zIndex: 10000 });
 
-      if (isMobile) {
-        const pushDown = window.innerHeight - titleRect.top - titleHeight;
-        gsap.set(heroTitleWrap, { y: pushDown });
-        gsap.set(firstWord, { x: -80, opacity: 0 });
-        gsap.set(secondWord, { x: 80, opacity: 0 });
-      } else {
-        const pushDown = window.innerHeight - titleRect.top - titleHeight;
-        const wordExtra = firstWord.offsetHeight * 1.2;
-        gsap.set(heroTitleWrap, { y: pushDown });
-        gsap.set(firstWord, { y: wordExtra, opacity: 0 });
-        gsap.set(secondWord, { y: wordExtra, opacity: 0 });
-      }
+      const pushDown = window.innerHeight - titleRect.top - titleHeight;
+      const wordExtra = firstWord.offsetHeight * 1.2;
+      gsap.set(heroTitleWrap, { y: pushDown });
+      gsap.set(firstWord, { y: wordExtra, opacity: 0 });
+      gsap.set(secondWord, { y: wordExtra, opacity: 0 });
     }
 
     let counterDone = false;
     let pageLoaded = document.readyState === "complete";
     let counterTween: gsap.core.Tween | null = null;
 
-    if (isScrolled) {
+    if (skipEntrance) {
       startCounter();
     } else {
-      const isMobile = window.innerWidth < 1024;
       const firstWord = heroWords[0];
       const secondWord = heroWords[1];
 
       const entranceTl = gsap.timeline({ onComplete: startCounter });
       entranceTl.set(heroWords, { opacity: 1 });
-
-      if (isMobile) {
-        entranceTl.to(firstWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
-        entranceTl.to(secondWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
-      } else {
-        entranceTl.to(firstWord, { y: 0, duration: 1, ease: "power3.out" });
-        entranceTl.to(secondWord, { y: 0, duration: 1, ease: "power3.out" }, "-=0.5");
-      }
+      entranceTl.to(firstWord, { y: 0, duration: 1, ease: "power3.out" });
+      entranceTl.to(secondWord, { y: 0, duration: 1, ease: "power3.out" }, "-=0.5");
     }
 
     function startCounter() {
