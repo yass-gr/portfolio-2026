@@ -41,17 +41,13 @@ export default function LiquidGlassCard({
   const uid = useId().replace(/[:.]/g, "-");
   const filterId = `lg-filter-${uid}`;
   const [isDesktop, setIsDesktop] = useState(true);
-  const [isFirefox, setIsFirefox] = useState(false);
+  const isFirefox = typeof navigator !== "undefined" && /Firefox/.test(navigator.userAgent);
 
   useEffect(() => {
     const check = () => setIsDesktop(window.innerWidth >= 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
-  }, []);
-
-  useEffect(() => {
-    setIsFirefox(/Firefox/.test(navigator.userAgent));
   }, []);
 
   const svgFilter = (
