@@ -41,12 +41,17 @@ export default function LiquidGlassCard({
   const uid = useId().replace(/[:.]/g, "-");
   const filterId = `lg-filter-${uid}`;
   const [isDesktop, setIsDesktop] = useState(true);
+  const [isFirefox, setIsFirefox] = useState(false);
 
   useEffect(() => {
     const check = () => setIsDesktop(window.innerWidth >= 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    setIsFirefox(/Firefox/.test(navigator.userAgent));
   }, []);
 
   const svgFilter = (
@@ -58,7 +63,7 @@ export default function LiquidGlassCard({
     </svg>
   );
 
-  const backdropFilter = isDesktop
+  const backdropFilter = isDesktop && !isFirefox
     ? `brightness(${brightness}) blur(${blurAmount}px) url(#${filterId})`
     : `brightness(${brightness}) blur(${blurAmount}px)`;
 
