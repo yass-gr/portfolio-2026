@@ -44,16 +44,24 @@ export function BottomNav() {
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
 
+    const ratios = new Map<string, number>();
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible.length > 0) {
-          setActiveItem(visible[0].target.id);
+        for (const e of entries) {
+          ratios.set(e.target.id, e.intersectionRatio);
         }
+        let bestId = "";
+        let bestRatio = 0;
+        for (const [id, ratio] of ratios) {
+          if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestId = id;
+          }
+        }
+        if (bestId) setActiveItem(bestId);
       },
-      { threshold: [0, 0.25, 0.5, 0.75, 1] },
+      { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] },
     );
 
     sections.forEach((el) => observer.observe(el));
