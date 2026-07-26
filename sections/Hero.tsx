@@ -293,11 +293,11 @@ export default function Hero() {
   return (
     <div
       id="about"
-      className="relative flex flex-col pb-20 max-sm:pt-4 max-lg:pt-4"
+      className="relative min-h-dvh flex flex-col pb-20 max-sm:pt-4 max-lg:pt-4"
       ref={containerRef}
     >
 
-      <div className="hero-title-wrap flex justify-center mb-5">
+      <div className="hero-title-wrap flex justify-center mb-0">
         <h1 className="mx-auto text-[7.5vw] font-panchang-extrabold max-sm:w-full max-sm:text-[12vw] max-sm:text-center max-sm:leading-[0.9] max-lg:w-full max-lg:text-[12vw] max-lg:text-center max-lg:leading-[0.9]">
           {words.map((word, i) => (
             <span key={i} className="hero-word inline-block">
@@ -319,7 +319,7 @@ export default function Hero() {
         borderOpacity={borderOpacity}
         borderRadius={borderRadius}
       >
-        <div className="grid grid-cols-[20%_80%] grid-rows-[auto_auto_auto_auto] gap-10 items-start max-w-5xl mx-auto py-10 px-2 lg:px-8 max-sm:grid-cols-1 max-sm:gap-6 max-sm:py-8 max-sm:px-6 max-lg:grid-cols-1 max-lg:gap-6 max-lg:py-8 max-lg:px-6">
+        <div className="grid grid-cols-[20%_80%] grid-rows-[auto_auto_auto_auto] gap-10 items-start max-w-5xl mx-auto py-10 lg:pt-16 px-2 lg:px-8 max-sm:grid-cols-1 max-sm:gap-6 max-sm:py-8 max-sm:pb-14 max-sm:px-4 max-lg:grid-cols-1 max-lg:gap-6 max-lg:py-8 max-lg:pb-14 max-lg:px-4">
           <div className="avatar-cell row-span-4 flex items-center justify-center max-sm:row-span-1 max-sm:mb-2 max-lg:row-span-1 max-lg:mb-2">
             <Avatar />
           </div>
