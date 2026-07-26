@@ -10,6 +10,9 @@ export default function Preloader() {
   const [done, setDone] = useState(false);
 
   useGSAP(() => {
+    window.scrollTo(0, 0);
+    history.scrollRestoration = "manual";
+
     const heroTitleWrap = document.querySelector<HTMLElement>(".hero-title-wrap");
     const heroWords = document.querySelectorAll<HTMLElement>(".hero-word");
     const overlay = overlayRef.current;
@@ -43,6 +46,8 @@ export default function Preloader() {
       const tl = gsap.timeline({
         onComplete: () => {
           gsap.set(heroTitleWrap, { clearProps: "all" });
+          window.scrollTo(0, 0);
+          history.scrollRestoration = "auto";
           window.dispatchEvent(new CustomEvent("preloader:done"));
           setDone(true);
         },
