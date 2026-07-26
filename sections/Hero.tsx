@@ -238,6 +238,7 @@ export default function Hero() {
   const [borderOpacity, setBorderOpacity] = useState(0.55);
   const [borderRadius, setBorderRadius] = useState(60);
   const [showControls, setShowControls] = useState(false);
+
   useGSAP(() => {
     const ctx = containerRef.current;
     if (!ctx) return;
@@ -256,9 +257,9 @@ export default function Hero() {
       },
       (context) => {
         const conditions = context.conditions as Record<string, boolean>;
+        const scaleVal = conditions.isDesktop ? 0.7 : conditions.isTablet ? 0.8 : 0.85;
 
         if (heroTitle) {
-          const scaleVal = conditions.isDesktop ? 0.7 : conditions.isTablet ? 0.8 : 0.85;
           gsap.to(heroTitle, {
             opacity: 0,
             scale: scaleVal,
@@ -286,16 +287,17 @@ export default function Hero() {
         }
       },
     );
+
   }, []);
 
   return (
     <div
       id="about"
-      className="relative min-h-dvh flex flex-col max-sm:pt-4 max-sm:pb-0 max-lg:pt-4 max-lg:pb-0"
+      className="relative flex flex-col pb-20 max-sm:pt-4 max-lg:pt-4"
       ref={containerRef}
     >
 
-      <div className="hero-title-wrap flex justify-center mb-2 max-sm:mb-2 max-lg:mb-2">
+      <div className="hero-title-wrap flex justify-center mb-5">
         <h1 className="mx-auto text-[7.5vw] font-panchang-extrabold max-sm:w-full max-sm:text-[12vw] max-sm:text-center max-sm:leading-[0.9] max-lg:w-full max-lg:text-[12vw] max-lg:text-center max-lg:leading-[0.9]">
           {words.map((word, i) => (
             <span key={i} className="hero-word inline-block">
@@ -317,8 +319,8 @@ export default function Hero() {
         borderOpacity={borderOpacity}
         borderRadius={borderRadius}
       >
-        <div className="grid grid-cols-[20%_80%] grid-rows-[auto_auto_auto_auto] gap-10 items-start max-w-5xl mx-auto py-10 mt-5 lg:mt-4 px-2 max-sm:grid-cols-1 max-sm:gap-6 max-sm:py-8 max-sm:px-6 max-lg:grid-cols-1 max-lg:gap-6 max-lg:py-8 max-lg:px-6">
-          <div className="row-span-4 flex items-center justify-center max-sm:row-span-1 max-sm:mb-2 max-lg:row-span-1 max-lg:mb-2">
+        <div className="grid grid-cols-[20%_80%] grid-rows-[auto_auto_auto_auto] gap-10 items-start max-w-5xl mx-auto py-10 px-2 lg:px-8 max-sm:grid-cols-1 max-sm:gap-6 max-sm:py-8 max-sm:px-6 max-lg:grid-cols-1 max-lg:gap-6 max-lg:py-8 max-lg:px-6">
+          <div className="avatar-cell row-span-4 flex items-center justify-center max-sm:row-span-1 max-sm:mb-2 max-lg:row-span-1 max-lg:mb-2">
             <Avatar />
           </div>
           <p className="font-clash-grotesk-regular text-2xl text-pretty text-base sm:text-lg md:text-2xl leading-relaxed max-sm:text-base max-sm:text-center max-sm:px-2 max-lg:text-base max-lg:text-center max-lg:px-2">
@@ -328,13 +330,13 @@ export default function Hero() {
               </span>
             ))}
           </p>
-          <div className="flex flex-col gap-3">
+          <div className="tech-stack-cell flex flex-col gap-3">
             <span className="text-xs font-clash-grotesk-semibold uppercase tracking-widest text-neutral-500">
               Tech Stack
             </span>
             <LogoCarousel columnCount={3} logos={logos} />
           </div>
-          <div className="flex flex-col gap-3 max-sm:overflow-hidden max-sm:w-full max-lg:overflow-hidden max-lg:w-full">
+          <div className="github-cell flex flex-col gap-3 max-sm:overflow-hidden max-sm:w-full max-lg:overflow-hidden max-lg:w-full">
             <span className="text-xs font-clash-grotesk-semibold uppercase tracking-widest text-neutral-500">
               GitHub Activity (2026)
             </span>
@@ -342,6 +344,8 @@ export default function Hero() {
           </div>
         </div>
       </LiquidGlassCard>
+
+
 
       <button
         onClick={() => setShowControls((v) => !v)}
