@@ -66,8 +66,8 @@ export default function LiquidGlassCard({
   );
 
   const backdropFilter = showSvgFilter
-    ? `brightness(${brightness}) blur(${blurAmount}px) url(#${filterId})`
-    : `blur(${blurAmount}px)`;
+    ? `url(#${filterId}) blur(${blurAmount}px) brightness(${brightness})`
+    : `blur(${blurAmount}px) brightness(${brightness})`;
 
   return (
     <>
