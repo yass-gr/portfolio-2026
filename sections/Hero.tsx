@@ -1,6 +1,6 @@
 "use client";
 import LiquidGlassCard from "@/components/LiquidGlassCard";
-import { useRef, useState, type SVGProps } from "react";
+import { useRef, type SVGProps } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,39 +8,6 @@ gsap.registerPlugin(ScrollTrigger);
 import Avatar from "@/components/Avatar";
 import { LogoCarousel } from "@/components/logo-carousel";
 import { GitHubCommits } from "@/components/GitHubCommits";
-
-function Slider({
-  label,
-  min,
-  max,
-  step,
-  value,
-  onChange,
-}: {
-  label: string;
-  min: number;
-  max: number;
-  step: number;
-  value: number;
-  onChange: (v: number) => void;
-}) {
-  return (
-    <label className="flex flex-col gap-1">
-      <span className="text-[10px] uppercase tracking-wider text-white/60">
-        {label}: {value}
-      </span>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-white/80"
-      />
-    </label>
-  );
-}
 
 function TSIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -229,15 +196,6 @@ const words = ["YASSINE", "GRAIRI"];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [blurAmount, setBlurAmount] = useState(17);
-  const [brightness, setBrightness] = useState(2);
-  const [displacementScale, setDisplacementScale] = useState(30);
-  const [turbulenceFreq, setTurbulenceFreq] = useState(0.012);
-  const [turbulenceOctaves, setTurbulenceOctaves] = useState(2);
-  const [borderWidth, setBorderWidth] = useState(4);
-  const [borderOpacity, setBorderOpacity] = useState(0.55);
-  const [borderRadius, setBorderRadius] = useState(60);
-  const [showControls, setShowControls] = useState(false);
 
   useGSAP(() => {
     const ctx = containerRef.current;
@@ -308,17 +266,7 @@ export default function Hero() {
         </h1>
       </div>
 
-      <LiquidGlassCard
-        className="glass-card-wrap w-[85%] mx-auto max-sm:w-[92%] max-lg:w-[92%]"
-        blurAmount={blurAmount}
-        brightness={brightness}
-        displacementScale={displacementScale}
-        turbulenceFreq={turbulenceFreq}
-        turbulenceOctaves={turbulenceOctaves}
-        borderWidth={borderWidth}
-        borderOpacity={borderOpacity}
-        borderRadius={borderRadius}
-      >
+      <LiquidGlassCard className="glass-card-wrap w-[85%] mx-auto max-sm:w-[92%] max-lg:w-[92%]">
         <div className="grid grid-cols-[20%_80%] grid-rows-[auto_auto_auto_auto] gap-10 items-start max-w-5xl mx-auto py-10 lg:pt-16 px-2 lg:px-8 max-sm:grid-cols-1 max-sm:gap-6 max-sm:py-8 max-sm:pb-14 max-sm:px-4 max-lg:grid-cols-1 max-lg:gap-6 max-lg:py-8 max-lg:pb-14 max-lg:px-4">
           <div className="avatar-cell row-span-4 flex items-center justify-center max-sm:row-span-1 max-sm:mb-2 max-lg:row-span-1 max-lg:mb-2">
             <Avatar />
@@ -344,87 +292,6 @@ export default function Hero() {
           </div>
         </div>
       </LiquidGlassCard>
-
-
-
-      <button
-        onClick={() => setShowControls((v) => !v)}
-        className="fixed top-4 right-4 z-[70] size-10 rounded-full bg-black/70 text-white/80 text-lg backdrop-blur-md flex items-center justify-center hover:bg-black/90 transition-colors"
-      >
-        {showControls ? "✕" : "⚙"}
-      </button>
-      {showControls && (
-        <div         className="fixed top-16 right-4 z-[2000] flex flex-col gap-3 rounded-2xl bg-black/70 p-4 text-white text-xs backdrop-blur-md w-56 max-h-[60vh] overflow-y-auto">
-          <Slider
-            label="Blur"
-            min={0}
-            max={20}
-            step={0.5}
-            value={blurAmount}
-            onChange={setBlurAmount}
-          />
-          <Slider
-            label="Brightness"
-            min={0.5}
-            max={3}
-            step={0.1}
-            value={brightness}
-            onChange={setBrightness}
-          />
-          <Slider
-            label="Displacement"
-            min={0}
-            max={500}
-            step={5}
-            value={displacementScale}
-            onChange={setDisplacementScale}
-          />
-          <Slider
-            label="Turbulence Freq"
-            min={0.001}
-            max={0.1}
-            step={0.001}
-            value={turbulenceFreq}
-            onChange={setTurbulenceFreq}
-          />
-          <Slider
-            label="Octaves"
-            min={1}
-            max={5}
-            step={1}
-            value={turbulenceOctaves}
-            onChange={setTurbulenceOctaves}
-          />
-          <hr className="border-white/10" />
-          <span className="text-[10px] uppercase tracking-wider text-white/40 mt-1">
-            Border
-          </span>
-          <Slider
-            label="Radius"
-            min={0}
-            max={60}
-            step={1}
-            value={borderRadius}
-            onChange={setBorderRadius}
-          />
-          <Slider
-            label="Width"
-            min={0}
-            max={20}
-            step={1}
-            value={borderWidth}
-            onChange={setBorderWidth}
-          />
-          <Slider
-            label="Opacity"
-            min={0}
-            max={1}
-            step={0.05}
-            value={borderOpacity}
-            onChange={setBorderOpacity}
-          />
-        </div>
-      )}
     </div>
   );
 }
