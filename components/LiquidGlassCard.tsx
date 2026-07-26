@@ -42,6 +42,7 @@ export default function LiquidGlassCard({
   const filterId = `lg-filter-${uid}`;
   const [isDesktop, setIsDesktop] = useState(true);
   const [showSvgFilter, setShowSvgFilter] = useState(false);
+  const [backdropSupported, setBackdropSupported] = useState(true);
 
   useEffect(() => {
     const check = () => setIsDesktop(window.innerWidth >= 1024);
@@ -53,6 +54,9 @@ export default function LiquidGlassCard({
   useEffect(() => {
     if (isDesktop && !/Firefox/.test(navigator.userAgent)) {
       setShowSvgFilter(true);
+    }
+    if (typeof CSS !== "undefined" && !CSS.supports("backdrop-filter", "blur(1px)")) {
+      setBackdropSupported(false);
     }
   }, [isDesktop]);
 
@@ -79,6 +83,7 @@ export default function LiquidGlassCard({
           filter: "drop-shadow(-8px -10px 46px #0000005f)",
           backdropFilter,
           WebkitBackdropFilter: backdropFilter,
+          ...(backdropSupported ? {} : { background: "rgba(255,255,255,0.08)" }),
         }}
       >
         <div
