@@ -40,6 +40,10 @@ export default function Preloader() {
       }
     }
 
+    let counterDone = false;
+    let pageLoaded = document.readyState === "complete";
+    let counterTween: gsap.core.Tween | null = null;
+
     if (isScrolled) {
       startCounter();
     } else {
@@ -58,10 +62,6 @@ export default function Preloader() {
         entranceTl.to(secondWord, { y: 0, duration: 1, ease: "power3.out" }, "-=0.5");
       }
     }
-
-    let counterDone = false;
-    let pageLoaded = document.readyState === "complete";
-    let counterTween: gsap.core.Tween | null = null;
 
     function startCounter() {
       const counterObj = { value: 0 };
