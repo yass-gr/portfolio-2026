@@ -29,8 +29,8 @@ export default function Preloader() {
       gsap.set(firstWord, { x: -80, opacity: 0 });
       gsap.set(secondWord, { x: 80, opacity: 0 });
     } else {
-      const pushDown = window.innerHeight - titleRect.top - titleHeight * 0.5;
-      const wordExtra = firstWord.offsetHeight * 0.7;
+      const pushDown = window.innerHeight - titleRect.top - titleHeight;
+      const wordExtra = firstWord.offsetHeight * 1.2;
       gsap.set(heroTitleWrap, { y: pushDown });
       gsap.set(firstWord, { y: wordExtra, opacity: 0 });
       gsap.set(secondWord, { y: wordExtra, opacity: 0 });
