@@ -40,12 +40,12 @@ export default function Preloader() {
 
     if (isMobile) {
       entranceTl.set(heroWords, { opacity: 1 });
-      entranceTl.to(firstWord, { x: 0, duration: 0.5, ease: "power3.out" });
-      entranceTl.to(secondWord, { x: 0, duration: 0.5, ease: "power3.out" }, "-=0.25");
+      entranceTl.to(firstWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
+      entranceTl.to(secondWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
     } else {
       entranceTl.set(heroWords, { opacity: 1 });
-      entranceTl.to(firstWord, { y: 0, duration: 0.5, ease: "power3.out" });
-      entranceTl.to(secondWord, { y: 0, duration: 0.5, ease: "power3.out" }, "-=0.25");
+      entranceTl.to(firstWord, { y: 0, duration: 1, ease: "power3.out" });
+      entranceTl.to(secondWord, { y: 0, duration: 1, ease: "power3.out" }, "-=0.5");
     }
 
     let counterDone = false;
