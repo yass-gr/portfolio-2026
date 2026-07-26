@@ -15,37 +15,48 @@ export default function Preloader() {
     const overlay = overlayRef.current;
     if (!heroTitleWrap || !heroWords.length || !overlay) return;
 
-    const isMobile = window.innerWidth < 1024;
-    const firstWord = heroWords[0];
-    const secondWord = heroWords[1];
-    const titleRect = heroTitleWrap.getBoundingClientRect();
-    const titleHeight = titleRect.height;
+    const isScrolled = window.scrollY > 0;
 
-    gsap.set(heroTitleWrap, { position: "relative", zIndex: 10000 });
+    if (!isScrolled) {
+      const isMobile = window.innerWidth < 1024;
+      const firstWord = heroWords[0];
+      const secondWord = heroWords[1];
+      const titleRect = heroTitleWrap.getBoundingClientRect();
+      const titleHeight = titleRect.height;
 
-    if (isMobile) {
-      const pushDown = window.innerHeight - titleRect.top - titleHeight;
-      gsap.set(heroTitleWrap, { y: pushDown });
-      gsap.set(firstWord, { x: -80, opacity: 0 });
-      gsap.set(secondWord, { x: 80, opacity: 0 });
-    } else {
-      const pushDown = window.innerHeight - titleRect.top - titleHeight;
-      const wordExtra = firstWord.offsetHeight * 1.2;
-      gsap.set(heroTitleWrap, { y: pushDown });
-      gsap.set(firstWord, { y: wordExtra, opacity: 0 });
-      gsap.set(secondWord, { y: wordExtra, opacity: 0 });
+      gsap.set(heroTitleWrap, { position: "relative", zIndex: 10000 });
+
+      if (isMobile) {
+        const pushDown = window.innerHeight - titleRect.top - titleHeight;
+        gsap.set(heroTitleWrap, { y: pushDown });
+        gsap.set(firstWord, { x: -80, opacity: 0 });
+        gsap.set(secondWord, { x: 80, opacity: 0 });
+      } else {
+        const pushDown = window.innerHeight - titleRect.top - titleHeight;
+        const wordExtra = firstWord.offsetHeight * 1.2;
+        gsap.set(heroTitleWrap, { y: pushDown });
+        gsap.set(firstWord, { y: wordExtra, opacity: 0 });
+        gsap.set(secondWord, { y: wordExtra, opacity: 0 });
+      }
     }
 
-    const entranceTl = gsap.timeline({ onComplete: startCounter });
-
-    if (isMobile) {
-      entranceTl.set(heroWords, { opacity: 1 });
-      entranceTl.to(firstWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
-      entranceTl.to(secondWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
+    if (isScrolled) {
+      startCounter();
     } else {
+      const isMobile = window.innerWidth < 1024;
+      const firstWord = heroWords[0];
+      const secondWord = heroWords[1];
+
+      const entranceTl = gsap.timeline({ onComplete: startCounter });
       entranceTl.set(heroWords, { opacity: 1 });
-      entranceTl.to(firstWord, { y: 0, duration: 1, ease: "power3.out" });
-      entranceTl.to(secondWord, { y: 0, duration: 1, ease: "power3.out" }, "-=0.5");
+
+      if (isMobile) {
+        entranceTl.to(firstWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
+        entranceTl.to(secondWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
+      } else {
+        entranceTl.to(firstWord, { y: 0, duration: 1, ease: "power3.out" });
+        entranceTl.to(secondWord, { y: 0, duration: 1, ease: "power3.out" }, "-=0.5");
+      }
     }
 
     let counterDone = false;
