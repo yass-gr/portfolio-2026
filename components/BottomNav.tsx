@@ -38,6 +38,28 @@ export function BottomNav() {
     setIsDark(document.documentElement.classList.contains("dark"));
   }, []);
 
+  useEffect(() => {
+    const sectionIds = navItems.map((i) => i.label.toLowerCase());
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          setActiveItem(visible[0].target.id);
+        }
+      },
+      { threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   const toggleDark = useCallback(() => {
     const next = !isDark;
     setIsDark(next);
