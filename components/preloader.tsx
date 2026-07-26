@@ -61,12 +61,13 @@ export default function Preloader() {
 
     let counterDone = false;
     let pageLoaded = document.readyState === "complete";
+    let counterTween: gsap.core.Tween | null = null;
 
     function startCounter() {
       const counterObj = { value: 0 };
-      gsap.to(counterObj, {
+      counterTween = gsap.to(counterObj, {
         value: 100,
-        duration: 2.5,
+        duration: 4,
         ease: "power2.out",
         onUpdate: () => {
           if (counterRef.current) {
@@ -99,6 +100,11 @@ export default function Preloader() {
 
     function onPageLoad() {
       pageLoaded = true;
+      if (counterTween && counterTween.isActive()) {
+        counterTween.kill();
+        if (counterRef.current) counterRef.current.textContent = "100%";
+        counterDone = true;
+      }
       tryReveal();
     }
 
