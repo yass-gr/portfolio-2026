@@ -456,7 +456,7 @@ export default function Tools() {
               {buckets.map((bucket, bi) => (
                 <div
                   key={bucket.label}
-                  className="w-full aspect-square rounded-[60px] max-sm:rounded-[60px] max-lg:rounded-[60px] relative bucket-card overflow-hidden"
+                  className="w-full aspect-square rounded-[60px] max-sm:rounded-[60px] max-lg:rounded-[60px] max-lg:max-w-md relative bucket-card overflow-hidden"
                   style={{
                     border: `1.5px solid ${borderColor}`,
                     backgroundColor: blurBg,
