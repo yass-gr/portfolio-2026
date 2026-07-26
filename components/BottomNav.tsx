@@ -51,7 +51,7 @@ export function BottomNav() {
           width="auto"
           height="auto"
           borderRadius={999}
-          backgroundOpacity={0.4}
+          backgroundOpacity={0}
           saturation={1.8}
           className="px-3 py-2 max-sm:px-1.5 max-sm:py-1 max-lg:px-4 max-lg:py-2.5 max-w-full"
           style={{ minHeight: '44px' }}
