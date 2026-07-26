@@ -17,6 +17,7 @@ import Footer from "@/components/footer";
 
 import { TooltipProvider } from "@/components/tooltip";
 import { InlineScript } from "@/components/inline-script";
+import Preloader from "@/components/preloader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -43,6 +44,7 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-dvh flex-col overflow-x-hidden">
+        <Preloader />
         <video
           className="fixed inset-0 w-full h-full object-cover -z-10 pointer-events-none max-sm:!inset-x-0 max-sm:!top-1/2 max-sm:!-translate-y-1/2 max-sm:!h-[70vh] max-lg:!inset-x-0 max-lg:!top-1/2 max-lg:!-translate-y-1/2 max-lg:!h-[70vh] dark:block hidden"
           loop
