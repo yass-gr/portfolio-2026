@@ -15,40 +15,9 @@ export default function Preloader() {
     const overlay = overlayRef.current;
     if (!heroTitleWrap || !heroWords.length || !overlay) return;
 
-    const isScrolled = window.scrollY > 0 || heroTitleWrap.getBoundingClientRect().top < -100;
-    const isMobile = window.innerWidth < 1024;
-    const skipEntrance = isScrolled || isMobile;
-
-    if (!skipEntrance) {
-      const firstWord = heroWords[0];
-      const secondWord = heroWords[1];
-      const titleRect = heroTitleWrap.getBoundingClientRect();
-      const titleHeight = titleRect.height;
-
-      gsap.set(heroTitleWrap, { position: "relative", zIndex: 10000 });
-
-      const pushDown = window.innerHeight - titleRect.top - titleHeight;
-      const wordExtra = firstWord.offsetHeight * 1.2;
-      gsap.set(heroTitleWrap, { y: pushDown });
-      gsap.set(firstWord, { y: wordExtra, opacity: 0 });
-      gsap.set(secondWord, { y: wordExtra, opacity: 0 });
-    }
-
     let counterDone = false;
     let pageLoaded = document.readyState === "complete";
     let counterTween: gsap.core.Tween | null = null;
-
-    if (skipEntrance) {
-      startCounter();
-    } else {
-      const firstWord = heroWords[0];
-      const secondWord = heroWords[1];
-
-      const entranceTl = gsap.timeline({ onComplete: startCounter });
-      entranceTl.set(heroWords, { opacity: 1 });
-      entranceTl.to(firstWord, { y: 0, duration: 1, ease: "power3.out" });
-      entranceTl.to(secondWord, { y: 0, duration: 1, ease: "power3.out" }, "-=0.5");
-    }
 
     function startCounter() {
       const counterObj = { value: 0 };
@@ -98,6 +67,47 @@ export default function Preloader() {
     if (document.readyState !== "complete") {
       window.addEventListener("load", onPageLoad);
     }
+
+    requestAnimationFrame(() => {
+      const isScrolled = window.scrollY > 0 || heroTitleWrap.getBoundingClientRect().top < -100;
+
+      if (isScrolled) {
+        startCounter();
+        return;
+      }
+
+      const isMobile = window.innerWidth < 1024;
+      const firstWord = heroWords[0];
+      const secondWord = heroWords[1];
+      const titleRect = heroTitleWrap.getBoundingClientRect();
+      const titleHeight = titleRect.height;
+
+      gsap.set(heroTitleWrap, { position: "relative", zIndex: 10000 });
+
+      if (isMobile) {
+        const pushDown = window.innerHeight - titleRect.top - titleHeight;
+        gsap.set(heroTitleWrap, { y: pushDown });
+        gsap.set(firstWord, { x: -80, opacity: 0 });
+        gsap.set(secondWord, { x: 80, opacity: 0 });
+      } else {
+        const pushDown = window.innerHeight - titleRect.top - titleHeight;
+        const wordExtra = firstWord.offsetHeight * 1.2;
+        gsap.set(heroTitleWrap, { y: pushDown });
+        gsap.set(firstWord, { y: wordExtra, opacity: 0 });
+        gsap.set(secondWord, { y: wordExtra, opacity: 0 });
+      }
+
+      const entranceTl = gsap.timeline({ onComplete: startCounter });
+      entranceTl.set(heroWords, { opacity: 1 });
+
+      if (isMobile) {
+        entranceTl.to(firstWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
+        entranceTl.to(secondWord, { x: 0, duration: 1, ease: "power3.out" }, 0);
+      } else {
+        entranceTl.to(firstWord, { y: 0, duration: 1, ease: "power3.out" });
+        entranceTl.to(secondWord, { y: 0, duration: 1, ease: "power3.out" }, "-=0.5");
+      }
+    });
 
     return () => window.removeEventListener("load", onPageLoad);
   }, []);
