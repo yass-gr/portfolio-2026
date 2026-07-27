@@ -173,6 +173,7 @@ function ToolPill({
             alt={tool.name}
             loading="lazy"
         className="w-6 h-6 max-sm:w-5 max-sm:h-5 max-lg:w-10 max-lg:h-10"
+            style={tool.iconUrl ? { filter: isDark ? "brightness(0) invert(1)" : "brightness(0)" } : undefined}
             onError={() => setIconFailed(true)}
           />
         )}
@@ -223,6 +224,7 @@ function ToolPillStatic({
         alt={tool.name}
         loading="lazy"
         className="w-6 h-6 max-sm:w-5 max-sm:h-5 max-lg:w-10 max-lg:h-10"
+        style={tool.iconUrl ? { filter: isDark ? "brightness(0) invert(1)" : "brightness(0)" } : undefined}
         onError={(e) => {
           const target = e.currentTarget;
           target.style.display = "none";
