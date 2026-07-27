@@ -113,7 +113,7 @@ export default function Projects() {
       className="min-h-dvh p-5 max-sm:pt-[15vh] max-lg:pt-[15vh]"
     >
         <h1 ref={titleRef} className="font-panchang-bold text-center text-5xl">
-          Featured Projects
+          Projects
         </h1>
 
       <LiquidGlassCard className="mt-4">
