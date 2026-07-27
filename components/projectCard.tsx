@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ArrowUpRight } from "lucide-react";
@@ -76,22 +76,7 @@ export default function ProjectCard({
 
     gsap.set(overlay, { y: 200 });
 
-    const blurProxy = { value: 0 };
     const tl = gsap.timeline({ paused: true });
-
-    tl.to(
-      blurProxy,
-      {
-        value: 60,
-        duration: 0.9,
-        ease: "power2.inOut",
-        onUpdate: () => {
-          overlay.style.backdropFilter = `blur(${blurProxy.value}px)`;
-          overlay.style.webkitBackdropFilter = `blur(${blurProxy.value}px)`;
-        },
-      },
-      0,
-    );
 
     tl.to(
       overlay,
@@ -136,11 +121,13 @@ export default function ProjectCard({
       } else {
         video?.play().catch(() => {});
       }
+      media.style.filter = "blur(8px)";
       tl.play();
     };
 
     const handleLeave = () => {
       video?.pause();
+      media.style.filter = "blur(0px)";
       tl.reverse();
     };
 
@@ -154,12 +141,60 @@ export default function ProjectCard({
     };
   }, []);
 
+  useEffect(() => {
+    const card = cardRef.current;
+    const media = mediaRef.current;
+    const video = videoRef.current;
+    const videoWrap = videoWrapRef.current;
+    if (!card || !media) return;
+
+    const isMobileOrTablet = window.innerWidth < 1024;
+    if (!isMobileOrTablet) return;
+
+    if (videoWrap) {
+      videoWrap.style.opacity = "0";
+      videoWrap.style.transition = "opacity 0.5s ease";
+    }
+
+    const toggleCard = (isCentered: boolean) => {
+      if (isCentered) {
+        media.style.filter = "blur(8px)";
+        media.style.transition = "filter 0.5s ease";
+        if (videoWrap) videoWrap.style.opacity = "1";
+
+        if (video && !video.src) {
+          video.src = `/projects/${slug}/showcase.webm`;
+          video.load();
+          video.addEventListener("canplay", () => video.play().catch(() => {}), { once: true });
+        } else {
+          video?.play().catch(() => {});
+        }
+      } else {
+        media.style.filter = "blur(0px)";
+        if (videoWrap) videoWrap.style.opacity = "0";
+        video?.pause();
+      }
+    };
+
+    const onScroll = () => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.top + rect.height / 2;
+      const vpCenter = window.innerHeight / 2;
+      toggleCard(Math.abs(cardCenter - vpCenter) / vpCenter < 0.3);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [slug]);
+
   return (
     <div
       ref={cardRef}
       className="relative rounded-[60px] [clip-path:inset(0_round_60px)] cursor-pointer max-sm:rounded-[60px] max-sm:[clip-path:inset(0_round_60px)] max-lg:rounded-[60px] max-lg:[clip-path:inset(0_round_60px)]"
     >
-      <div ref={mediaRef} className="w-full aspect-square overflow-hidden">
+      <div ref={mediaRef} className="w-full aspect-square overflow-hidden" style={{ transition: "filter 0.9s cubic-bezier(0.44, 0.06, 0.56, 0.94)" }}>
         <img
           src={`/projects/${slug}/image.png`}
           alt={title}
@@ -171,8 +206,6 @@ export default function ProjectCard({
         ref={overlayRef}
         className="absolute inset-0 flex flex-col justify-end p-6 pb-8 bg-gradient-to-t from-black/70 to-black/20 max-sm:px-5 max-sm:py-4 max-sm:pb-4 max-lg:p-8 max-lg:pb-8"
         style={{
-          backdropFilter: "blur(0px)",
-          WebkitBackdropFilter: "blur(0px)",
           opacity: 1,
         }}
       >
