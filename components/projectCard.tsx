@@ -76,7 +76,22 @@ export default function ProjectCard({
 
     gsap.set(overlay, { y: 200 });
 
+    const blurProxy = { value: 0 };
     const tl = gsap.timeline({ paused: true });
+
+    tl.to(
+      blurProxy,
+      {
+        value: 60,
+        duration: 0.9,
+        ease: "power2.inOut",
+        onUpdate: () => {
+          overlay.style.backdropFilter = `blur(${blurProxy.value}px)`;
+          overlay.style.webkitBackdropFilter = `blur(${blurProxy.value}px)`;
+        },
+      },
+      0,
+    );
 
     tl.to(
       overlay,
@@ -114,8 +129,6 @@ export default function ProjectCard({
     }
 
     const handleEnter = () => {
-      overlay.style.backdropFilter = "blur(60px)";
-      overlay.style.webkitBackdropFilter = "blur(60px)";
       if (video && !video.src) {
         video.src = `/projects/${slug}/showcase.webm`;
         video.load();
@@ -127,8 +140,6 @@ export default function ProjectCard({
     };
 
     const handleLeave = () => {
-      overlay.style.backdropFilter = "blur(0px)";
-      overlay.style.webkitBackdropFilter = "blur(0px)";
       video?.pause();
       tl.reverse();
     };
@@ -162,7 +173,6 @@ export default function ProjectCard({
         style={{
           backdropFilter: "blur(0px)",
           WebkitBackdropFilter: "blur(0px)",
-          transition: "backdrop-filter 0.5s ease, -webkit-backdrop-filter 0.5s ease",
           opacity: 1,
         }}
       >
