@@ -1,4 +1,4 @@
-# Portfolio-v1
+# Portfolio-2026
 
 > **Personal Portfolio — Full-Stack Developer & Designer**
 
@@ -72,8 +72,8 @@ Every section is crafted with attention to motion and detail:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yass-gr/portfolio-v1.git
-cd portfolio-v1
+git clone https://github.com/yass-gr/portfolio-2026.git
+cd portfolio-2026
 
 # 2. Install dependencies
 npm install
