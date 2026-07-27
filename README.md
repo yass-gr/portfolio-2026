@@ -16,17 +16,20 @@
 
 ## Screenshots
 
-| About / Hero (Light)                                  | About / Hero (Dark)                                 |
-| ----------------------------------------------------- | --------------------------------------------------- |
-| ![About Light](screenshots/about.png)                 | *(dark variant available)*                          |
+### Hero (Dark & Light)
 
-| Projects                                              | Tools                                                  |
-| ----------------------------------------------------- | ------------------------------------------------------ |
-| ![Projects](screenshots/projects.png)                 | ![Tools](screenshots/tools.png)                        |
+![About Dark](screenshots/about.png)
+![About Light](screenshots/about\(light\).png)
 
-| Contact                                               |
-| ----------------------------------------------------- |
-| ![Contact](screenshots/contact.png)                   |
+### Projects & Tools
+
+![Projects](screenshots/projects.png)
+![Tools](screenshots/tools.png)
+
+### Contact & Responsive
+
+![Contact](screenshots/contact.png)
+![Responsive](screenshots/responsive.png)
 
 ---
 
