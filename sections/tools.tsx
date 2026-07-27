@@ -5,10 +5,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LiquidGlassCard from "@/components/LiquidGlassCard";
-import Gravity, {
-  GravityRef,
-  MatterBody,
-} from "@/components/gravity";
+import Gravity, { GravityRef, MatterBody } from "@/components/gravity";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,8 +38,18 @@ const devTools: Tool[] = [
 
 const designTools: Tool[] = [
   { name: "Figma", slug: "figma", color: "#F24E1E" },
-  { name: "Photoshop", slug: "adobephotoshop", color: "#31A8FF", iconUrl: "https://api.iconify.design/cib/adobe-photoshop.svg" },
-  { name: "Premiere Pro", slug: "adobepremierepro", color: "#9999FF", iconUrl: "https://api.iconify.design/file-icons/adobe-premiere.svg" },
+  {
+    name: "Photoshop",
+    slug: "adobephotoshop",
+    color: "#31A8FF",
+    iconUrl: "https://api.iconify.design/cib/adobe-photoshop.svg",
+  },
+  {
+    name: "Premiere Pro",
+    slug: "adobepremierepro",
+    color: "#9999FF",
+    iconUrl: "https://api.iconify.design/file-icons/adobe-premiere.svg",
+  },
   { name: "DaVinci Resolve", slug: "davinciresolve", color: "#233A51" },
 ];
 
@@ -50,7 +57,12 @@ const workflowTools: Tool[] = [
   { name: "Git", slug: "git", color: "#F05032" },
   { name: "GitHub", slug: "github", color: "#181717" },
   { name: "Vercel", slug: "vercel", color: "#000000" },
-  { name: "VS Code", slug: "visualstudiocode", color: "#007ACC", iconUrl: "https://api.iconify.design/cib/visual-studio-code.svg" },
+  {
+    name: "VS Code",
+    slug: "visualstudiocode",
+    color: "#007ACC",
+    iconUrl: "https://api.iconify.design/cib/visual-studio-code.svg",
+  },
   { name: "Postman", slug: "postman", color: "#FF6C37" },
   { name: "Linux", slug: "linux", color: "#FCC624" },
   { name: "Apache", slug: "apache", color: "#D22128" },
@@ -169,11 +181,22 @@ function ToolPill({
           </span>
         ) : (
           <img
-            src={tool.iconUrl || `https://cdn.simpleicons.org/${tool.slug}/${iconColor}`}
+            src={
+              tool.iconUrl ||
+              `https://cdn.simpleicons.org/${tool.slug}/${iconColor}`
+            }
             alt={tool.name}
             loading="lazy"
-        className="w-6 h-6 max-sm:w-5 max-sm:h-5 max-lg:w-10 max-lg:h-10"
-            style={tool.iconUrl ? { filter: isDark ? "brightness(0) invert(1)" : "brightness(0)" } : undefined}
+            className="w-6 h-6 max-sm:w-5 max-sm:h-5 max-lg:w-10 max-lg:h-10"
+            style={
+              tool.iconUrl
+                ? {
+                    filter: isDark
+                      ? "brightness(0) invert(1)"
+                      : "brightness(0)",
+                  }
+                : undefined
+            }
             onError={() => setIconFailed(true)}
           />
         )}
@@ -190,19 +213,13 @@ function rng(base: number, range: number) {
 function hashStr(s: string): number {
   let h = 0;
   for (let i = 0; i < s.length; i++) {
-    h = ((h << 5) - h) + s.charCodeAt(i);
+    h = (h << 5) - h + s.charCodeAt(i);
     h |= 0;
   }
   return Math.abs(h);
 }
 
-function ToolPillStatic({
-  tool,
-  isDark,
-}: {
-  tool: Tool;
-  isDark: boolean;
-}) {
+function ToolPillStatic({ tool, isDark }: { tool: Tool; isDark: boolean }) {
   const iconColor = isDark ? "ffffff" : "000000";
   const textColor = isDark ? "text-white" : "text-black";
   const borderColor = isDark ? "border-white/15" : "border-black/10";
@@ -220,11 +237,18 @@ function ToolPillStatic({
       }}
     >
       <img
-        src={tool.iconUrl || `https://cdn.simpleicons.org/${tool.slug}/${iconColor}`}
+        src={
+          tool.iconUrl ||
+          `https://cdn.simpleicons.org/${tool.slug}/${iconColor}`
+        }
         alt={tool.name}
         loading="lazy"
         className="w-6 h-6 max-sm:w-5 max-sm:h-5 max-lg:w-10 max-lg:h-10"
-        style={tool.iconUrl ? { filter: isDark ? "brightness(0) invert(1)" : "brightness(0)" } : undefined}
+        style={
+          tool.iconUrl
+            ? { filter: isDark ? "brightness(0) invert(1)" : "brightness(0)" }
+            : undefined
+        }
         onError={(e) => {
           const target = e.currentTarget;
           target.style.display = "none";
@@ -452,7 +476,7 @@ export default function Tools() {
       <LiquidGlassCard className="mt-4 pb-14">
         <div className="pt-14 pb-10 px-10 max-sm:pt-8 max-sm:pb-6 max-sm:px-4 max-lg:pt-8 max-lg:pb-6 max-lg:px-4">
           <p className="font-clash-grotesk-regular text-2xl text-neutral-700 dark:text-neutral-300 pl-6 max-sm:text-base max-sm:pl-2 max-lg:text-base max-lg:pl-2">
-            everything i need to build, design
+            everything i need to build
           </p>
         </div>
         <div
