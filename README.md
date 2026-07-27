@@ -46,47 +46,6 @@ Every section is crafted with attention to motion and detail:
 
 ---
 
-## Features
-
-### Interactive Physics Sandbox (Tools section)
-
-- Drag-and-drop tool pills powered by **Matter.js** — real collision, gravity, friction
-- Hover over tool categories (dev / design / AI) to reveal labels
-- Responsive: physics playground on desktop, static layout on mobile/tablet
-- Dark/light mode-aware styling
-
-### Liquid Glass Cards
-
-- Custom glassmorphism component used across all sections
-- Adaptive to dark/light themes with dynamic blur and border opacity
-
-### Magnetic Project Cards
-
-- Each project card follows the cursor with a subtle magnetic pull (desktop only)
-- Fetches project metadata from local JSON files
-
-### Smooth Scrolling
-
-- Powered by **Lenis** for butter-smooth scroll with GSAP ScrollTrigger integration
-- Custom easing and scroll-driven animations on hero, project titles, and tool labels
-
-### Dark/Light Mode
-
-- System-aware with `prefers-color-scheme` detection at load time (no flash)
-- No toggle — follows OS preference seamlessly
-
-### Custom Fonts
-
-- Three distinct typefaces loaded locally: **Expose** (display), **Clash Grotesk** (body), **Panchang** (headings)
-- No external font requests — fully self-hosted
-
-### GitHub Integration
-
-- Live contribution calendar via `react-activity-calendar`
-- Public activity data fetched from GitHub API
-
----
-
 ## Tech Stack
 
 | Layer             | Tech                                                                      |
@@ -99,7 +58,6 @@ Every section is crafted with attention to motion and detail:
 | **Icons**         | Lucide React, Simple Icons (via CDN)                                      |
 | **Commits**       | `react-activity-calendar`                                                 |
 | **Testing**       | Vitest 4, Testing Library (jest-dom, react), jsdom                        |
-| **Tooling**       | ESLint 9, `eslint-config-next`                                            |
 | **Fonts**         | Expose, Clash Grotesk, Panchang (self-hosted via `next/font/local`)       |
 
 ---
@@ -177,19 +135,6 @@ npm start
 ├── tailwind.config.ts      # Tailwind CSS configuration
 └── package.json
 ```
-
----
-
-## Featured Projects
-
-| Project                                                                    | Stack                            |
-| -------------------------------------------------------------------------- | -------------------------------- |
-| **[POS Jemla](https://github.com/yass-gr/Jemla-POS)**                     | React, Express, SQLite, Tailwind |
-| Point of Sale & Business Management for wholesale fruit & vegetable distribution |                                  |
-| **[QuickCut](https://github.com/yass-gr/quickCut)**                       | Next.js, Remotion, ffmpeg        |
-| Football video generator for TikTok & Reels with wizard-based workflow     |                                  |
-| **[Tor1 Shoes](https://github.com/G13Q/Running)**                         | PHP, MySQL, jQuery               |
-| Full-featured shoes e-commerce with admin panel                           |                                  |
 
 ---
 
