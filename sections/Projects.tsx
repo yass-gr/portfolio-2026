@@ -15,7 +15,7 @@ interface ProjectData {
   githubUrl?: string;
 }
 
-const projectSlugs = ["pos-Jemla", "running-ecom", "quickcut"];
+const projectSlugs = ["pos-Jemla", "running-ecom", "quickcut", "portfolio-2026"];
 
 gsap.registerPlugin(ScrollTrigger);
 
