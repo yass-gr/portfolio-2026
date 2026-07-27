@@ -1,6 +1,6 @@
 {
   "title": "Portfolio 2026",
   "tags": ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "Framer Motion"],
-  "description": "Personal portfolio with interactive physics playground, liquid glass cards, and smooth scroll animations.",
+  "description": "Personal portfolio with physics playground and liquid glass cards.",
   "githubUrl": "https://github.com/yass-gr/portfolio-2026"
 }

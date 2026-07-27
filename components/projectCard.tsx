@@ -158,15 +158,30 @@ export default function ProjectCard({
 
     const toggleCard = (isCentered: boolean) => {
       if (isCentered) {
-        media.style.filter = "blur(8px)";
-        media.style.transition = "filter 0.5s ease";
         if (videoWrap) videoWrap.style.opacity = "1";
 
         if (video && !video.src) {
           video.src = `/projects/${slug}/showcase.webm`;
           video.load();
-          video.addEventListener("canplay", () => video.play().catch(() => {}), { once: true });
+          video.addEventListener("canplay", () => {
+            const cardEl = cardRef.current;
+            const mediaEl = mediaRef.current;
+            if (cardEl && mediaEl) {
+              const rect = cardEl.getBoundingClientRect();
+              const cardCenter = rect.top + rect.height / 2;
+              const vpCenter = window.innerHeight / 2;
+              if (Math.abs(cardCenter - vpCenter) / vpCenter < 0.3) {
+                mediaEl.style.filter = "blur(8px)";
+                mediaEl.style.transition = "filter 0.5s ease";
+              }
+            }
+            video.play().catch(() => {});
+          }, { once: true });
         } else {
+          if (video && video.readyState >= 2) {
+            media.style.filter = "blur(8px)";
+            media.style.transition = "filter 0.5s ease";
+          }
           video?.play().catch(() => {});
         }
       } else {
@@ -211,7 +226,7 @@ export default function ProjectCard({
       >
         <h3 className="font-panchang-bold text-4xl text-white max-sm:text-lg max-lg:text-3xl">{title}</h3>
         {description && (
-          <p className="font-clash-grotesk-regular text-sm text-white/80 mt-2 max-sm:text-[10px] max-lg:text-base">{description}</p>
+          <p className="font-clash-grotesk-regular text-sm text-white/80 mt-2 max-sm:text-[9px] max-lg:text-base">{description}</p>
         )}
         <div className="flex items-end justify-between mt-4 max-sm:mt-2 max-lg:mt-5">
           <div className="flex gap-3 max-sm:gap-1.5 max-sm:flex-wrap max-lg:gap-3 max-lg:flex-wrap">
@@ -251,7 +266,7 @@ export default function ProjectCard({
           </div>
         </div>
       </div>
-      <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[92%] aspect-video pointer-events-none">
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[92%] aspect-video pointer-events-none max-sm:top-4">
         <div ref={videoWrapRef} className="w-full h-full">
           <video
             ref={videoRef}

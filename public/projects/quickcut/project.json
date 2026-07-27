@@ -1,6 +1,6 @@
 {
   "title": "QuickCut",
   "tags": ["Next.js", "Remotion", "TypeScript", "Tailwind", "ffmpeg"],
-  "description": "Football Video Generator for TikTok & Reels — a wizard-based workflow to create high-quality football content videos with templates, background music, and Remotion-powered rendering.",
+  "description": "Football video generator for TikTok & Reels with Remotion-powered rendering.",
   "githubUrl": "https://github.com/yass-gr/quickCut"
 }
