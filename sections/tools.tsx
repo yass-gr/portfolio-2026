@@ -41,8 +41,8 @@ const devTools: Tool[] = [
 
 const designTools: Tool[] = [
   { name: "Figma", slug: "figma", color: "#F24E1E" },
-  { name: "Photoshop", slug: "adobephotoshop", color: "#31A8FF" },
-  { name: "Premiere Pro", slug: "adobepremierepro", color: "#9999FF" },
+  { name: "Photoshop", slug: "adobephotoshop", color: "#31A8FF", iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
+  { name: "Premiere Pro", slug: "adobepremierepro", color: "#9999FF", iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg" },
   { name: "DaVinci Resolve", slug: "davinciresolve", color: "#233A51" },
 ];
 
