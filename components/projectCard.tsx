@@ -62,7 +62,6 @@ export default function ProjectCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
-  const blurRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoWrapRef = useRef<HTMLDivElement>(null);
 
@@ -70,10 +69,9 @@ export default function ProjectCard({
     const card = cardRef.current;
     const media = mediaRef.current;
     const overlay = overlayRef.current;
-    const blur = blurRef.current;
     const video = videoRef.current;
     const videoWrap = videoWrapRef.current;
-    if (!card || !media || !overlay || !blur) return;
+    if (!card || !media || !overlay) return;
     if (window.innerWidth < 1024) return;
 
     gsap.set(overlay, { y: 200 });
@@ -88,8 +86,8 @@ export default function ProjectCard({
         duration: 0.9,
         ease: "power2.inOut",
         onUpdate: () => {
-          blur.style.backdropFilter = `blur(${blurProxy.value}px)`;
-          blur.style.webkitBackdropFilter = `blur(${blurProxy.value}px)`;
+          overlay.style.backdropFilter = `blur(${blurProxy.value}px)`;
+          overlay.style.webkitBackdropFilter = `blur(${blurProxy.value}px)`;
         },
       },
       0,
@@ -170,17 +168,11 @@ export default function ProjectCard({
         />
       </div>
       <div
-        ref={blurRef}
-        className="absolute inset-0"
+        ref={overlayRef}
+        className="absolute inset-0 flex flex-col justify-end p-6 pb-8 bg-gradient-to-t from-black/70 to-black/20 max-sm:px-5 max-sm:py-4 max-sm:pb-4 max-lg:p-8 max-lg:pb-8"
         style={{
           backdropFilter: "blur(0px)",
           WebkitBackdropFilter: "blur(0px)",
-        }}
-      />
-      <div
-        ref={overlayRef}
-        className="absolute inset-0 flex flex-col justify-end p-6 pb-8 bg-gradient-to-t from-black/60 to-transparent max-sm:px-5 max-sm:py-4 max-sm:pb-4 max-lg:p-8 max-lg:pb-8"
-        style={{
           opacity: 1,
         }}
       >
