@@ -16,6 +16,7 @@ interface Tool {
   name: string;
   slug: string;
   color: string;
+  iconUrl?: string;
 }
 
 const devTools: Tool[] = [
@@ -49,7 +50,7 @@ const workflowTools: Tool[] = [
   { name: "Git", slug: "git", color: "#F05032" },
   { name: "GitHub", slug: "github", color: "#181717" },
   { name: "Vercel", slug: "vercel", color: "#000000" },
-  { name: "VS Code", slug: "visualstudiocode", color: "#007ACC" },
+  { name: "VS Code", slug: "visualstudiocode", color: "#007ACC", iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
   { name: "Postman", slug: "postman", color: "#FF6C37" },
   { name: "Linux", slug: "linux", color: "#FCC624" },
   { name: "Apache", slug: "apache", color: "#D22128" },
@@ -168,7 +169,7 @@ function ToolPill({
           </span>
         ) : (
           <img
-            src={`https://cdn.simpleicons.org/${tool.slug}/${iconColor}`}
+            src={tool.iconUrl || `https://cdn.simpleicons.org/${tool.slug}/${iconColor}`}
             alt={tool.name}
             loading="lazy"
         className="w-6 h-6 max-sm:w-5 max-sm:h-5 max-lg:w-10 max-lg:h-10"
@@ -218,7 +219,7 @@ function ToolPillStatic({
       }}
     >
       <img
-        src={`https://cdn.simpleicons.org/${tool.slug}/${iconColor}`}
+        src={tool.iconUrl || `https://cdn.simpleicons.org/${tool.slug}/${iconColor}`}
         alt={tool.name}
         loading="lazy"
         className="w-6 h-6 max-sm:w-5 max-sm:h-5 max-lg:w-10 max-lg:h-10"
