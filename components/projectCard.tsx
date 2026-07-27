@@ -207,7 +207,7 @@ export default function ProjectCard({
   return (
     <div
       ref={cardRef}
-      className="relative rounded-[60px] [clip-path:inset(0_round_60px)] cursor-pointer max-sm:rounded-[60px] max-sm:[clip-path:inset(0_round_60px)] max-lg:rounded-[60px] max-lg:[clip-path:inset(0_round_60px)]"
+      className="relative rounded-[60px] [clip-path:inset(0_round_60px)] cursor-pointer max-sm:rounded-[60px] max-sm:[clip-path:inset(0_round_60px)] max-sm:p-2 max-lg:rounded-[60px] max-lg:[clip-path:inset(0_round_60px)]"
     >
       <div ref={mediaRef} className="w-full aspect-square overflow-hidden" style={{ transition: "filter 0.9s cubic-bezier(0.44, 0.06, 0.56, 0.94)" }}>
         <img
@@ -266,7 +266,7 @@ export default function ProjectCard({
           </div>
         </div>
       </div>
-      <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[92%] aspect-video pointer-events-none max-sm:top-4">
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[92%] aspect-video pointer-events-none max-sm:top-6">
         <div ref={videoWrapRef} className="w-full h-full">
           <video
             ref={videoRef}
