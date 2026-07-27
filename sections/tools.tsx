@@ -19,35 +19,42 @@ interface Tool {
 }
 
 const devTools: Tool[] = [
-  { name: "React", slug: "react", color: "#61DAFB" },
-  { name: "Next.js", slug: "nextdotjs", color: "#666666" },
+  { name: "JavaScript", slug: "javascript", color: "#F7DF1E" },
   { name: "TypeScript", slug: "typescript", color: "#3178C6" },
+  { name: "React", slug: "react", color: "#61DAFB" },
+  { name: "Next.js", slug: "nextdotjs", color: "#000000" },
   { name: "Node.js", slug: "nodedotjs", color: "#5FA04E" },
+  { name: "Express", slug: "express", color: "#000000" },
+  { name: "PHP", slug: "php", color: "#777BB4" },
   { name: "Python", slug: "python", color: "#3776AB" },
-  { name: "Docker", slug: "docker", color: "#2496ED" },
-  { name: "Tailwind", slug: "tailwindcss", color: "#06B6D4" },
-  { name: "Svelte", slug: "svelte", color: "#FF3E00" },
-  { name: "Go", slug: "go", color: "#00ADD8" },
-  { name: "GraphQL", slug: "graphql", color: "#E10098" },
+  { name: "PostgreSQL", slug: "postgresql", color: "#4169E1" },
+  { name: "SQLite", slug: "sqlite", color: "#003B57" },
+  { name: "MySQL", slug: "mysql", color: "#4479A1" },
+  { name: "Tailwind CSS", slug: "tailwindcss", color: "#06B6D4" },
+  { name: "Bootstrap", slug: "bootstrap", color: "#7952B3" },
+  { name: "jQuery", slug: "jquery", color: "#0769AD" },
+  { name: "Jest", slug: "jest", color: "#C21325" },
+  { name: "Vitest", slug: "vitest", color: "#6E9F18" },
+  { name: "React Native", slug: "react", color: "#61DAFB" },
 ];
 
 const designTools: Tool[] = [
   { name: "Figma", slug: "figma", color: "#F24E1E" },
-  { name: "Blender", slug: "blender", color: "#E87D0D" },
-  { name: "Sketch", slug: "sketch", color: "#F7B500" },
-  { name: "GIMP", slug: "gimp", color: "#5C5543" },
-  { name: "Dribbble", slug: "dribbble", color: "#EA4C89" },
+  { name: "Photoshop", slug: "adobephotoshop", color: "#31A8FF" },
+  { name: "Premiere Pro", slug: "adobepremierepro", color: "#9999FF" },
+  { name: "DaVinci Resolve", slug: "davinciresolve", color: "#233A51" },
 ];
 
-const aiTools: Tool[] = [
-  { name: "TensorFlow", slug: "tensorflow", color: "#FF6F00" },
-  { name: "PyTorch", slug: "pytorch", color: "#EE4C2C" },
-  { name: "LangChain", slug: "langchain", color: "#1C3C3C" },
-  { name: "Hugging Face", slug: "huggingface", color: "#FFD21E" },
-  { name: "scikit-learn", slug: "scikitlearn", color: "#F7931E" },
-  { name: "Keras", slug: "keras", color: "#D00000" },
-  { name: "Jupyter", slug: "jupyter", color: "#F37626" },
-  { name: "MLflow", slug: "mlflow", color: "#0194E2" },
+const workflowTools: Tool[] = [
+  { name: "Git", slug: "git", color: "#F05032" },
+  { name: "GitHub", slug: "github", color: "#181717" },
+  { name: "Vercel", slug: "vercel", color: "#000000" },
+  { name: "VS Code", slug: "visualstudiocode", color: "#007ACC" },
+  { name: "Postman", slug: "postman", color: "#FF6C37" },
+  { name: "Linux", slug: "linux", color: "#FCC624" },
+  { name: "Apache", slug: "apache", color: "#D22128" },
+  { name: "Claude", slug: "claude", color: "#D97757" },
+  { name: "FFmpeg", slug: "ffmpeg", color: "#007808" },
 ];
 
 interface Bucket {
@@ -62,7 +69,7 @@ interface Bucket {
 const desktopBuckets: Bucket[] = [
   { label: "dev", tools: devTools, x: "3%", width: "30%" },
   { label: "design", tools: designTools, x: "35%", width: "30%" },
-  { label: "ai", tools: aiTools, x: "67%", width: "30%" },
+  { label: "tools", tools: workflowTools, x: "67%", width: "30%" },
 ];
 
 const mobileBuckets: Bucket[] = [
@@ -83,8 +90,8 @@ const mobileBuckets: Bucket[] = [
     height: "25%",
   },
   {
-    label: "ai",
-    tools: aiTools,
+    label: "tools",
+    tools: workflowTools,
     x: "5%",
     width: "90%",
     top: "58%",
