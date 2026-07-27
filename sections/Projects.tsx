@@ -157,7 +157,7 @@ export default function Projects() {
                 href="https://github.com/yass-gr?tab=repositories"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-clash-grotesk-semibold text-lg px-6 py-3 rounded-full outline outline-1 outline-black/20 dark:outline-white/20 hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300"
+                className="font-clash-grotesk-semibold text-lg px-6 py-3 rounded-full outline outline-1 outline-black/20 dark:outline-white/20 hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300 max-sm:text-sm max-sm:px-4 max-sm:py-2"
               >
                 see more …
               </a>

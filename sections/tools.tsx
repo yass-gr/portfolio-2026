@@ -227,7 +227,7 @@ function ToolPillStatic({ tool, isDark }: { tool: Tool; isDark: boolean }) {
 
   return (
     <div
-      className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-clash-grotesk-semibold w-fit max-sm:gap-1.5 max-sm:px-3 max-sm:py-1.5 max-sm:text-sm max-lg:gap-4 max-lg:px-10 max-lg:py-5 max-lg:text-xl ${textColor} ${borderColor} ${bgColor}`}
+      className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-clash-grotesk-semibold w-fit max-sm:gap-1 max-sm:px-2 max-sm:py-1 max-sm:text-xs max-lg:gap-1.5 max-lg:px-3 max-lg:py-1.5 max-lg:text-sm ${textColor} ${borderColor} ${bgColor}`}
       style={{
         borderWidth: "1.5px",
         boxShadow: isDark
@@ -243,20 +243,20 @@ function ToolPillStatic({ tool, isDark }: { tool: Tool; isDark: boolean }) {
         }
         alt={tool.name}
         loading="lazy"
-        className="w-6 h-6 max-sm:w-5 max-sm:h-5 max-lg:w-10 max-lg:h-10"
-        style={
-          tool.iconUrl
-            ? { filter: isDark ? "brightness(0) invert(1)" : "brightness(0)" }
-            : undefined
-        }
-        onError={(e) => {
-          const target = e.currentTarget;
-          target.style.display = "none";
-          const fallback = target.nextElementSibling;
-          if (fallback) (fallback as HTMLElement).style.display = "flex";
-        }}
-      />
-      <span className="hidden w-6 h-6 items-center justify-center text-xs font-bold max-sm:w-5 max-sm:h-5 max-sm:text-xs max-lg:w-10 max-lg:h-10">
+            className="w-6 h-6 max-sm:w-4 max-sm:h-4 max-lg:w-5 max-lg:h-5"
+            style={
+              tool.iconUrl
+                ? { filter: isDark ? "brightness(0) invert(1)" : "brightness(0)" }
+                : undefined
+            }
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.style.display = "none";
+              const fallback = target.nextElementSibling;
+              if (fallback) (fallback as HTMLElement).style.display = "flex";
+            }}
+          />
+          <span className="hidden w-6 h-6 items-center justify-center text-xs font-bold max-sm:w-4 max-sm:h-4 max-sm:text-xs max-lg:w-5 max-lg:h-5">
         {tool.name[0]}
       </span>
       {tool.name}
@@ -502,7 +502,7 @@ export default function Tools() {
                   >
                     {bucket.label}
                   </div>
-                  <div className="absolute left-0 right-0 bottom-8 flex flex-wrap justify-center gap-x-3 gap-y-2 max-sm:gap-x-1.5 max-sm:gap-y-1.5 max-lg:gap-x-3 max-lg:gap-y-2 px-3">
+                  <div className="absolute left-0 right-0 bottom-8 flex flex-wrap justify-center gap-x-3 gap-y-2 max-sm:gap-x-1 max-sm:gap-y-1 max-sm:bottom-4 max-lg:gap-x-1.5 max-lg:gap-y-1 max-lg:bottom-4 px-3">
                     {bucket.tools.map((tool) => (
                       <ToolPillStatic
                         key={tool.name}
