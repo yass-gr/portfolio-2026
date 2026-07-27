@@ -112,9 +112,9 @@ export default function Projects() {
       id="projects"
       className="min-h-dvh p-5 max-sm:pt-[15vh] max-lg:pt-[15vh]"
     >
-      <h1 ref={titleRef} className="font-panchang-bold text-center text-5xl">
-        Projects
-      </h1>
+        <h1 ref={titleRef} className="font-panchang-bold text-center text-5xl">
+          Featured Projects
+        </h1>
 
       <LiquidGlassCard className="mt-4">
         <div className="min-h-dvh p-5 grid grid-cols-12 py-[100px] max-sm:grid-cols-1 max-sm:py-6 max-sm:p-3 max-lg:grid-cols-1 max-lg:py-6 max-lg:p-3">
@@ -152,6 +152,16 @@ export default function Projects() {
                 <ProjectCard {...project} />
               </Magnet>
             ))}
+            <div className="col-span-full flex justify-center mt-12">
+              <a
+                href="https://github.com/yass-gr?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-clash-grotesk-semibold text-lg px-6 py-3 rounded-full outline outline-1 outline-black/20 dark:outline-white/20 hover:bg-black/5 dark:hover:bg-white/10 transition-all duration-300"
+              >
+                see more ↗
+              </a>
+            </div>
           </div>
         </div>
       </LiquidGlassCard>
