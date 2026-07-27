@@ -1,0 +1,6 @@
+{
+  "title": "POS Jemla",
+  "tags": ["React", "Express", "SQLite", "Tailwind"],
+  "description": "A point of sale system built with React, Express, SQLite, and Tailwind CSS.",
+  "githubUrl": "https://github.com/yass-gr/Jemla-POS/tree/main"
+}

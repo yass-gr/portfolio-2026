@@ -8,48 +8,14 @@ import LiquidGlassCard from "@/components/LiquidGlassCard";
 import ProjectCard from "@/components/projectCard";
 import Magnet from "@/components/magnet";
 
-const projects = [
-  {
-    title: "AI Dashboard",
-    imageId: 42,
-    tags: ["React", "Python", "TensorFlow"],
-  },
-  {
-    title: "E-Commerce App",
-    imageId: 77,
-    tags: ["Next.js", "Stripe", "PostgreSQL"],
-  },
-  {
-    title: "Social Platform",
-    imageId: 133,
-    tags: ["GraphQL", "Redis", "Docker"],
-  },
-  {
-    title: "Portfolio Builder",
-    imageId: 256,
-    tags: ["Vue.js", "AWS", "Tailwind"],
-  },
-  {
-    title: "Task Manager",
-    imageId: 314,
-    tags: ["Svelte", "Socket.io", "MongoDB"],
-  },
-  {
-    title: "Weather App",
-    imageId: 512,
-    tags: ["React Native", "D3.js"],
-  },
-  {
-    title: "Chat Engine",
-    imageId: 618,
-    tags: ["Go", "WebRTC", "gRPC"],
-  },
-  {
-    title: "Fitness Tracker",
-    imageId: 777,
-    tags: ["Flutter", "Firebase"],
-  },
-];
+interface ProjectData {
+  title: string;
+  tags: string[];
+  description: string;
+  githubUrl?: string;
+}
+
+const projectSlugs = ["pos-Jemla", "running-ecom", "quickcut"];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,9 +23,20 @@ export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [projects, setProjects] = useState<(ProjectData & { slug: string })[]>([]);
 
   useEffect(() => {
     setIsDesktop(window.innerWidth >= 1024);
+  }, []);
+
+  useEffect(() => {
+    Promise.all(
+      projectSlugs.map(async (slug) => {
+        const res = await fetch(`/projects/${slug}/project.json`);
+        const data: ProjectData = await res.json();
+        return { ...data, slug };
+      }),
+    ).then(setProjects);
   }, []);
 
   useGSAP(() => {
@@ -167,7 +144,7 @@ export default function Projects() {
           <div className="col-span-9 grid grid-cols-2 gap-8 content-start p-4 max-sm:col-span-1 max-sm:grid-cols-1 max-sm:gap-4 max-sm:p-0 max-lg:col-span-1 max-lg:grid-cols-1 max-lg:gap-6 max-lg:p-4 max-lg:mx-auto">
             {projects.map((project) => (
               <Magnet
-                key={project.imageId}
+                key={project.slug}
                 padding={10}
                 magnetStrength={10}
                 disabled={!isDesktop}
