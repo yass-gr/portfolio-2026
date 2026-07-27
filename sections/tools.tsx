@@ -41,8 +41,8 @@ const devTools: Tool[] = [
 
 const designTools: Tool[] = [
   { name: "Figma", slug: "figma", color: "#F24E1E" },
-  { name: "Photoshop", slug: "adobephotoshop", color: "#31A8FF", iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
-  { name: "Premiere Pro", slug: "adobepremierepro", color: "#9999FF", iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-original.svg" },
+  { name: "Photoshop", slug: "adobephotoshop", color: "#31A8FF", iconUrl: "https://api.iconify.design/cib/adobe-photoshop.svg" },
+  { name: "Premiere Pro", slug: "adobepremierepro", color: "#9999FF", iconUrl: "https://api.iconify.design/file-icons/adobe-premiere.svg" },
   { name: "DaVinci Resolve", slug: "davinciresolve", color: "#233A51" },
 ];
 
@@ -50,7 +50,7 @@ const workflowTools: Tool[] = [
   { name: "Git", slug: "git", color: "#F05032" },
   { name: "GitHub", slug: "github", color: "#181717" },
   { name: "Vercel", slug: "vercel", color: "#000000" },
-  { name: "VS Code", slug: "visualstudiocode", color: "#007ACC", iconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+  { name: "VS Code", slug: "visualstudiocode", color: "#007ACC", iconUrl: "https://api.iconify.design/cib/visual-studio-code.svg" },
   { name: "Postman", slug: "postman", color: "#FF6C37" },
   { name: "Linux", slug: "linux", color: "#FCC624" },
   { name: "Apache", slug: "apache", color: "#D22128" },
